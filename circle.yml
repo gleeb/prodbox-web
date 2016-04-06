@@ -1,0 +1,25 @@
+machine:
+  services:
+  node:
+      version: 5.1.0
+dependencies:
+  cache_directories:
+    - "~/.npm"
+    - "node_modules"
+  pre:
+    - sudo pip install awscli
+  override:
+    # client side resolve dependencies
+    - npm install
+
+test:
+  override:
+   - npm test
+
+deployment:
+    production:
+      branch: master
+      commands:
+        - npm run dist
+        - /bin/bash publish.sh
+        - zip -r $CIRCLE_ARTIFACTS/ui.zip dist/prod
