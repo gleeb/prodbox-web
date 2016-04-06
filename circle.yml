@@ -22,4 +22,4 @@ deployment:
       commands:
         - npm run dist
         - /bin/bash publish.sh
-        - zip -r $CIRCLE_ARTIFACTS/ui.zip dist/prod
+        - zip -r $CIRCLE_ARTIFACTS/ui.zip dist/
